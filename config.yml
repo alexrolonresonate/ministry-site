@@ -1,0 +1,56 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "updates"
+    label: "Updates & Prayer Requests"
+    folder: "_updates"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Prayer Request", "Ministry News", "Praise Report"] }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "newsletter"
+    label: "Newsletter Archive"
+    folder: "_newsletter"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Preview Text", name: "preview", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "_testimonials"
+    create: true
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image" }
+      - { label: "Story", name: "story", widget: "text" }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "Stats"
+        name: "stats"
+        file: "_data/stats.yml"
+        fields:
+          - { label: "Students Reached", name: "students_reached", widget: "string" }
+          - { label: "Weekly Attendance", name: "weekly_attendance", widget: "string" }
+          - { label: "Decisions for Christ", name: "decisions", widget: "string" }
+      - label: "Hero"
+        name: "hero"
+        file: "_data/hero.yml"
+        fields:
+          - { label: "Hero Photo", name: "hero_photo", widget: "image" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Subheadline", name: "subheadline", widget: "string" }
